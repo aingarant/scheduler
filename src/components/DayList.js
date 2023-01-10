@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import DayListItem from './DayListItem'
 
 const DayList = (props) => {
-
-  const [day, setDay] = useState('')
 
   const dayListItem = props.days.map(day => {
     return (
