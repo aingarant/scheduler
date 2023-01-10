@@ -9,8 +9,6 @@ const DayListItem = (props) => {
     "day-list__item--full": props.full <= 0
   });
 
-  const [day, setDay] = useState('');
-
   const formatSpots = (spots) => {
 
     if (spots === 0) {
@@ -26,7 +24,7 @@ const DayListItem = (props) => {
 
 
   return (
-    <li onClick={() => setDay(props.name)} className={dayListItemClass}>
+    <li onClick={() => props.setDay(props.name)} className={dayListItemClass}>
       <h2>{props.name}</h2>
       <h3>{formatSpots(props.spots)}</h3>
     </li>
