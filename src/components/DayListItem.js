@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import "./DayListItem.scss"
-const DayListItem = (props) => {
 
+const DayListItem = (props) => {
 
   const dayListItemClass = classNames("day-list__item", {
     "day-list__item--selected": props.selected,
@@ -26,7 +26,7 @@ const DayListItem = (props) => {
 
 
   return (
-    <li onClick={() => props.setDay(props.name)} className={dayListItemClass}>
+    <li onClick={() => setDay(props.name)} className={dayListItemClass}>
       <h2>{props.name}</h2>
       <h3>{formatSpots(props.spots)}</h3>
     </li>
