@@ -1,6 +1,8 @@
 import React from 'react'
 import InterviewerListItem from './InterviewerListItem'
 import "./InterviewerList.scss"
+
+
 const InterviewerList = (props) => {
 
   const interviewerList = props.interviewers.map(interviewer => {
@@ -9,8 +11,8 @@ const InterviewerList = (props) => {
         id={interviewer.id}
         avatar={interviewer.avatar}
         name={interviewer.name}
-        selected={interviewer.id === props.interviewer}
-        setInterviewer={props.setInterviewer}
+        selected={interviewer.id === props.value}
+        onChange={() => props.onChange(interviewer.id)}  
         />
     )
 

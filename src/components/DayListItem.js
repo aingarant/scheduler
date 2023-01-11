@@ -24,7 +24,7 @@ const DayListItem = (props) => {
 
 
   return (
-    <li onClick={() => props.setDay(props.name)} className={dayListItemClass}>
+    <li onClick={() => props.onChange(props.name)} className={dayListItemClass}  selected={props.selected}>
       <h2>{props.name}</h2>
       <h3>{formatSpots(props.spots)}</h3>
     </li>
