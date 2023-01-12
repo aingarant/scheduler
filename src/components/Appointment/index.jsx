@@ -9,19 +9,21 @@ import Status from "./Status";
 import Error from "./Error";
 
 const Appointment = (props) => {
+  console.log("Appointment Props", props)
+
   return (
     <article className="appointment">
       <Header time={props.time} />
 
       {props.interview ? (
         <Show
-          student={props.student}
-          interviewer={props.interviewer}
+          student={props.interview.student}
+          interviewer={props.interview.interviewer}
           onEdit={props.onEdit}
           onDelete={props.onDelete}
         />
       ) : (
-        <Empty />
+        <Empty onAdd={props.onAdd} />
       )}
     </article>
   );

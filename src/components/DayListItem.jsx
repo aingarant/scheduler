@@ -4,7 +4,7 @@ import "./DayListItem.scss"
 
 const DayListItem = (props) => {
 
-  console.log("*******************")
+  console.log("*********DAYLIST ITEM**********")
   console.log(props)
 
 
