@@ -9,7 +9,7 @@ import Status from "./Status";
 import Error from "./Error";
 
 const Appointment = (props) => {
-  console.log("Appointment Props", props)
+  // console.log("Appointment Props", props)
 
   return (
     <article className="appointment">

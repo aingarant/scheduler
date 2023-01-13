@@ -4,8 +4,8 @@ import "./DayListItem.scss"
 
 const DayListItem = (props) => {
 
-  console.log("*********DAYLIST ITEM**********")
-  console.log(props)
+  // console.log("*********DAYLIST ITEM**********")
+  // console.log(props)
 
 
   const dayListItemClass = classNames("day-list__item", {

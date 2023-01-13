@@ -3,7 +3,7 @@ import DayListItem from './DayListItem'
 
 const DayList = (props) => {
 
-  console.log("--------------DAYLIST ------------", props)
+  // console.log("--------------DAYLIST ------------", props)
 
   const dayListItem = props.days.map(day => {
 

@@ -22,7 +22,16 @@ export const getAppointmentsForDay = (state, day) => {
 // }
 
 
-export const getInterview = (state, interview) =>
-{
+export const getInterview = (state, interview) => {
 
+  // console.log("selector arguments ** interview **", interview)
+  // console.log("selector arguments ** state ** ", state)
+  let newProps = {};
+  if (!interview) {
+    return null;
+  }
+  newProps['student'] = interview.student;
+  newProps['interviewer'] = state.interviewers[interview.interviewer]
+
+  return newProps;
 }

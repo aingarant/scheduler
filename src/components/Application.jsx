@@ -4,7 +4,7 @@ import Appointment from "./Appointment";
 import axios from "axios";
 import "components/Application.scss";
 import { compileString } from "sass";
-import{getAppointmentsForDay} from "helpers/selectors"
+import{getAppointmentsForDay, getInterview} from "helpers/selectors"
 
 export default function Application(props) {
 
@@ -35,6 +35,22 @@ export default function Application(props) {
 
   dailyAppointments = getAppointmentsForDay(state, state.day);
 
+  const appointments = getAppointmentsForDay(state, state.day);
+
+  const schedule = appointments.map((appointment) => {
+
+    const interview = getInterview(state, appointment.interview);
+  
+    return (
+      <Appointment
+        key={appointment.id}
+        id={appointment.id}
+        time={appointment.time}
+        interview={interview}
+      />
+    );
+  });
+
 
   console.log("The state", state)
 
@@ -63,8 +79,25 @@ export default function Application(props) {
       <section className="schedule">
         {dailyAppointments &&
           dailyAppointments.map((appointment) => {
-            return <Appointment key={appointment.id} {...appointment} />;
+            const interview = getInterview(state, appointment.interview)
+            console.log("interview props", interview)
+
+
+            return (
+              <Appointment key={appointment.id}
+              //  {...appointment} 
+              student={appointment.student}
+              onEdit={props.onEdit}
+              onDelete={props.onDelete}
+              interview={interview}
+                
+      />
+            );
+
+
           })}
+
+          {/* {schedule} */}
       </section>
     </main>
   );
