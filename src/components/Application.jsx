@@ -4,7 +4,7 @@ import Appointment from "./Appointment";
 import axios from "axios";
 import "components/Application.scss";
 import { compileString } from "sass";
-import{getAppointmentsForDay, getInterview} from "helpers/selectors"
+import{getAppointmentsForDay, getInterview, interviewersForDay} from "helpers/selectors"
 
 export default function Application(props) {
 
@@ -52,7 +52,12 @@ export default function Application(props) {
   });
 
 
-  console.log("The state", state)
+  // console.log("The state", state)
+
+  const bookInterview = (id, interview) =>
+  {
+    console.log(id, interview)
+  }
 
   return (
     <main className="layout">
@@ -90,6 +95,7 @@ export default function Application(props) {
               onEdit={props.onEdit}
               onDelete={props.onDelete}
               interview={interview}
+              bookInterview={bookInterview}
                 
       />
             );
