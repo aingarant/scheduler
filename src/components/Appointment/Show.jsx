@@ -2,7 +2,7 @@ import React from "react";
 
 const Show = (props) => {
 
-  console.log("Show Props", props)
+  console.log("SHOW PROPS **", props)
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">

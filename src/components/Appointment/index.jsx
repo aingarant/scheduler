@@ -10,10 +10,12 @@ import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
 
 const Appointment = (props) => {
+  console.log("APPOINTMENT PROPS", props);
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
   const EDIT = "EDIT";
+  const SAVING = "SAVING";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -26,7 +28,16 @@ const Appointment = (props) => {
       student: name,
       interviewer,
     };
-    console.log("We are saving.", interview)
+
+    transition(SAVING);
+
+    props.bookInterview(props.id, interview).then(()=>
+    {
+      transition(SHOW);
+    })
+    .catch(()=>{
+
+    })
   };
 
   return (
@@ -35,8 +46,13 @@ const Appointment = (props) => {
 
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
 
-      {mode === CREATE && <Form interviewers={[]} onSave={save}
-      interview={props.bookInterview} />}
+      {mode === CREATE && (
+        <Form
+          interviewers={props.interviewers}
+          onSave={save}
+          interview={props.bookInterview}
+        />
+      )}
 
       {mode === SHOW && (
         <Show
@@ -45,7 +61,9 @@ const Appointment = (props) => {
         />
       )}
 
-      {mode === EDIT && <Form {...props} onSave={save}/>}
+      {mode === EDIT && <Form {...props} onSave={save} />}
+
+      {mode === SAVING && <Status message={'Saving'} />}
     </article>
   );
 };

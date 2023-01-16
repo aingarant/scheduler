@@ -12,22 +12,8 @@ export const getAppointmentsForDay = (state, day) => {
   })
   return output;
 }
-
-// export const getAppointmentsForDay = ({days, appointments}, day) => {
-//   let output = []
-//   const dayArray = days.find(item => item.name === day);
-
-//   dayArray.appointments.map(appt => {
-//     output.push(appointments[appt]);
-//   })
-//   return output;
-// }
-
-
 export const getInterview = (state, interview) => {
 
-  // console.log("selector arguments ** interview **", interview)
-  // console.log("selector arguments ** state ** ", state)
   let newProps = {};
   if (!interview) {
     return null;
@@ -41,43 +27,11 @@ export const getInterview = (state, interview) => {
 export const getInterviewersForDay = (state, day) =>
 {
 
-  const {days, interviewers, appointments} = state;
+  const dayItem = state.days.find(item => item.name === day);
 
-  let output = []
-  let InterviewerList = []
-  const dayArray = state.days.filter(item => item.name === day);
-
-  if (dayArray.length === 0) {
+  if (!dayItem) {
     return []
   }
-  dayArray[0].appointments.map(appt => {
-    output.push(state.appointments[appt]);
-  })
-
-  console.log("The output ********** for day", day, " **** ",  output)
-
-  output.map(appt=>{
-    if (appt.interview)
-    {
-      const interviewer = interviewers[appt.interview.interviewer]
-      InterviewerList.push(interviewer)
-    }
-  })
-
-  return InterviewerList;
-
-
-  // return result;
-  // const interviewersForDay = [];
-
-  // const result = [];
-
-  // const theInterviewers = days.find(interviewer => interviewer.name === day)?.interviewers;
-
-  // theInterviewers && Object.values(interviewers).map(interviewer => {
-  //   if (theInterviewers.includes(interviewer.id)) {
-  //     interviewersForDay.push(interviewer);
-  //   }
-  // });
+  return dayItem.interviewers.map(interviewerId => state.interviewers[interviewerId])
 
 }
