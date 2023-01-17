@@ -10,15 +10,11 @@ import {
   getInterviewersForDay,
 } from "helpers/selectors";
 
-export default function Application(props) {
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: {},
-    interviewers: {},
-  });
+import useApplicationData from "hooks/useApplicationData";
 
-  const setDay = (day) => setState({ ...state, day });
+export default function Application(props) {
+  const { state, setState, setDay, bookInterview, cancelInterview } =
+    useApplicationData();
 
   useEffect(() => {
     Promise.all([
@@ -37,41 +33,6 @@ export default function Application(props) {
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
-
-  const bookInterview = (id, interview) => {
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-    return axios.put(`/api/appointments/${id}`, { interview })
-      .then(response => {
-        setState({ ...state, appointments });
-      });
-  };
-
-  const cancelInterview = (id) =>
-  {
-    const appointment = {
-      ...state.appointments[id],
-      interview: null
-    };
-
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
-
-    return axios.delete(`/api/appointments/${id}`)
-    .then(response => {
-      setState({ ...state, appointments });
-    });
-  }
-
-  
 
   console.log("APPLICATION PROOPS ****", props);
 
