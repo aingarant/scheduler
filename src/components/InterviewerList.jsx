@@ -4,7 +4,6 @@ import "./InterviewerList.scss"
 
 
 const InterviewerList = (props) => {
-  console.log("We are calling interviewer List. And the props are...", props)
 
   const interviewerList = props.interviewers.map(interviewer => {
     return (

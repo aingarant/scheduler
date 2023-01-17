@@ -21,8 +21,6 @@ const Form = (props) => {
     props.onSave(student, interviewer)
   }
 
-  console.log("** FORM PROPS **", props)
-
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">

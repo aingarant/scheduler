@@ -1,9 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-
 const useApplicationData = () => {
-
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -12,6 +10,21 @@ const useApplicationData = () => {
   });
 
   const setDay = (day) => setState({ ...state, day });
+
+  const updateSpots = (appointments) => {
+
+    // day object.
+    const dayObj = state.days.find(item => item.name === state.day);
+
+    // empty slots.
+    const spots = dayObj.appointments.filter(
+      (appt) => appointments[appt].interview === null
+    ).length;
+
+    const day = {...dayObj, spots}
+
+    return state.days.map(d => d.name === state.day ? day : d)
+  };
 
   const bookInterview = (id, interview) => {
     const appointment = {
@@ -25,7 +38,9 @@ const useApplicationData = () => {
     return axios
       .put(`/api/appointments/${id}`, { interview })
       .then((response) => {
-        setState({ ...state, appointments });
+        const days = updateSpots(appointments);
+        console.log("Spot days...", days);
+        setState({ ...state, appointments, days });
       });
   };
 
@@ -41,11 +56,28 @@ const useApplicationData = () => {
     };
 
     return axios.delete(`/api/appointments/${id}`).then((response) => {
-      setState({ ...state, appointments });
+      const days = updateSpots(appointments);
+      console.log("Spot days...", days);
+      setState({ ...state, appointments, days });
     });
   };
 
-  return {state, setState, setDay, bookInterview, cancelInterview}
-}
+  useEffect(() => {
+    Promise.all([
+      axios.get("http://localhost:8001/api/appointments"),
+      axios.get("http://localhost:8001/api/days"),
+      axios.get("http://localhost:8001/api/interviewers"),
+    ]).then((all) => {
+      setState((prev) => ({
+        ...prev,
+        appointments: all[0].data,
+        days: all[1].data,
+        interviewers: all[2].data,
+      }));
+    });
+  }, []);
 
-export default useApplicationData  
+  return { state, setDay, bookInterview, cancelInterview, updateSpots };
+};
+
+export default useApplicationData;

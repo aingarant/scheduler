@@ -6,11 +6,10 @@ import Empty from "./Emtpy";
 import Form from "./Form";
 import Confirm from "./Confirm";
 import Status from "./Status";
-import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
 
 const Appointment = (props) => {
-  console.log("APPOINTMENT PROPS", props);
+
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -24,8 +23,6 @@ const Appointment = (props) => {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
-
-  // props.interview ? useVisualMode(SHOW) : useVisualMode(EMPTY);
 
   const save = (name, interviewer) => {
     const interview = {

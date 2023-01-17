@@ -1,4 +1,3 @@
-import InterviewerList from "components/InterviewerList";
 
 export const getAppointmentsForDay = (state, day) => {
   let output = []
@@ -8,10 +7,12 @@ export const getAppointmentsForDay = (state, day) => {
     return []
   }
   dayArray[0].appointments.map(appt => {
-    output.push(state.appointments[appt]);
+    return output.push(state.appointments[appt]);
   })
   return output;
 }
+
+
 export const getInterview = (state, interview) => {
 
   let newProps = {};

@@ -4,7 +4,6 @@ import "./InterviewerListItem.scss"
 
 const InterviewerListItem = (props) => {
 
-  console.log("We are calling interviewre List Item")
 
   const interviewerListItemClass = classNames("interviewers__item", {
     "interviewers__item--selected": props.selected
