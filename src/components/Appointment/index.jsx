@@ -16,9 +16,10 @@ const Appointment = (props) => {
   const CREATE = "CREATE";
   const EDIT = "EDIT";
   const SAVING = "SAVING";
-  const ERROR = "ERROR";
   const CONFIRM = "CONFIRM";
   const DELETING = "DELETING";
+  const ERROR_SAVE = "ERROR WHILE SAVING";
+  const ERROR_DELETE = "ERROR WHILE SAVING";
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -40,21 +41,17 @@ const Appointment = (props) => {
         transition(SHOW);
       })
       .catch(() => {
-        transition(ERROR);
+        transition(ERROR_SAVE, true);
       });
   };
 
-
-
   const cancel = () => {
-    transition(DELETING);
-    const id = props.id;
-
+    transition(DELETING, true);
     props
-      .cancelInterview(id)
+      .cancelInterview(props.id)
       .then(() => transition(EMPTY))
       .catch((error) => {
-        transition(ERROR);
+        transition(ERROR_DELETE, true);
       });
   };
 
@@ -91,9 +88,19 @@ const Appointment = (props) => {
         />
       )}
 
-      {mode === EDIT && <Form {...props} onSave={save} />}
+      {mode === EDIT && (
+        <Form
+          student={props.interview.student}
+          interviewer={props.interview.interviewer.id}
+          interviewers={props.interviewers}
+          onSave={save}
+          onCancel={back}
+        />
+      )}
 
       {mode === SAVING && <Status message={"Saving"} />}
+      {mode === ERROR_SAVE && <Status message={"Error while saving."} />}
+      {mode === ERROR_DELETE && <Status message={"Error while deleting."} />}
     </article>
   );
 };

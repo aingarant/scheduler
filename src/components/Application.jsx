@@ -69,8 +69,9 @@ export default function Application(props) {
     .then(response => {
       setState({ ...state, appointments });
     });
-
   }
+
+  
 
   console.log("APPLICATION PROOPS ****", props);
 
