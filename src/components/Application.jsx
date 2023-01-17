@@ -53,6 +53,25 @@ export default function Application(props) {
       });
   };
 
+  const cancelInterview = (id) =>
+  {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.delete(`/api/appointments/${id}`)
+    .then(response => {
+      setState({ ...state, appointments });
+    });
+
+  }
+
   console.log("APPLICATION PROOPS ****", props);
 
   return (
@@ -86,6 +105,7 @@ export default function Application(props) {
                 onDelete={props.onDelete}
                 interview={interview}
                 bookInterview={bookInterview}
+                cancelInterview={cancelInterview}
                 interviewers={interviewers}
               />
             );
