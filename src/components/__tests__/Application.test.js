@@ -8,7 +8,10 @@ import Application from "components/Application";
 afterEach(cleanup);
 
 describe("Running test for Application Component", () => {
-  it("", () => {
 
+  it("renders without crashing", () => {
+    render(<Application />);
   });
+
+
 })
