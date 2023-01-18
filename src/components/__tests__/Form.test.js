@@ -3,11 +3,11 @@ import React from "react";
 import { render, cleanup } from "@testing-library/react";
 
 
-import Application from "components/Application";
+import Form from "components/Appointment/Form";
 
 afterEach(cleanup);
 
-describe("Running test for Application Component", () => {
+describe("Running test for Form Component", () => {
   it("", () => {
 
   });
