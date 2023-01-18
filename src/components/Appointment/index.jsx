@@ -9,7 +9,6 @@ import Status from "./Status";
 import useVisualMode from "hooks/useVisualMode";
 
 const Appointment = (props) => {
-
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -34,12 +33,8 @@ const Appointment = (props) => {
 
     props
       .bookInterview(props.id, interview)
-      .then(() => {
-        transition(SHOW);
-      })
-      .catch(() => {
-        transition(ERROR_SAVE, true);
-      });
+      .then(() => transition(SHOW))
+      .catch((error) => transition(ERROR_SAVE, true));
   };
 
   const handleDelete = () => {
@@ -47,16 +42,12 @@ const Appointment = (props) => {
     props
       .cancelInterview(props.id)
       .then(() => transition(EMPTY))
-      .catch((error) => {
-        transition(ERROR_DELETE, true);
-      });
+      .catch((error) => transition(ERROR_DELETE));
   };
 
-  const handleCancel = () =>
-  {
+  const handleCancel = () => {
     transition(EMPTY);
-  }
-
+  };
 
   return (
     <article className="appointment">
@@ -74,7 +65,11 @@ const Appointment = (props) => {
       )}
 
       {mode === CONFIRM && (
-        <Confirm message={"Are you sure?"} onCancel={back} onConfirm={handleDelete} />
+        <Confirm
+          message={"Are you sure?"}
+          onCancel={back}
+          onConfirm={handleDelete}
+        />
       )}
 
       {mode === DELETING && <Status message={"Deleting..."} />}
