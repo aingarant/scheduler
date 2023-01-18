@@ -42,7 +42,7 @@ const Appointment = (props) => {
       });
   };
 
-  const cancel = () => {
+  const handleDelete = () => {
     transition(DELETING, true);
     props
       .cancelInterview(props.id)
@@ -51,6 +51,12 @@ const Appointment = (props) => {
         transition(ERROR_DELETE, true);
       });
   };
+
+  const handleCancel = () =>
+  {
+    transition(EMPTY);
+  }
+
 
   return (
     <article className="appointment">
@@ -62,12 +68,13 @@ const Appointment = (props) => {
         <Form
           interviewers={props.interviewers}
           onSave={save}
+          onCancel={handleCancel}
           interview={props.bookInterview}
         />
       )}
 
       {mode === CONFIRM && (
-        <Confirm message={"Are you sure?"} onCancel={back} onConfirm={cancel} />
+        <Confirm message={"Are you sure?"} onCancel={back} onConfirm={handleDelete} />
       )}
 
       {mode === DELETING && <Status message={"Deleting..."} />}

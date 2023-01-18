@@ -39,7 +39,6 @@ const useApplicationData = () => {
       .put(`/api/appointments/${id}`, { interview })
       .then((response) => {
         const days = updateSpots(appointments);
-        console.log("Spot days...", days);
         setState({ ...state, appointments, days });
       });
   };
@@ -57,7 +56,6 @@ const useApplicationData = () => {
 
     return axios.delete(`/api/appointments/${id}`).then((response) => {
       const days = updateSpots(appointments);
-      console.log("Spot days...", days);
       setState({ ...state, appointments, days });
     });
   };
