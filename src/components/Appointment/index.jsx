@@ -6,19 +6,20 @@ import Empty from "./Emtpy";
 import Form from "./Form";
 import Confirm from "./Confirm";
 import Status from "./Status";
+import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
 
-const Appointment = (props) => {
-  const EMPTY = "EMPTY";
-  const SHOW = "SHOW";
-  const CREATE = "CREATE";
-  const EDIT = "EDIT";
-  const SAVING = "SAVING";
-  const CONFIRM = "CONFIRM";
-  const DELETING = "DELETING";
-  const ERROR_SAVE = "ERROR WHILE SAVING";
-  const ERROR_DELETE = "ERROR WHILE SAVING";
+const EMPTY = "EMPTY";
+const SHOW = "SHOW";
+const CREATE = "CREATE";
+const EDIT = "EDIT";
+const SAVING = "SAVING";
+const CONFIRM = "CONFIRM";
+const DELETING = "DELETING";
+const ERROR_SAVE = "ERROR WHILE SAVING";
+const ERROR_DELETE = "ERROR WHILE DELETING";
 
+const Appointment = (props) => {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
@@ -42,11 +43,7 @@ const Appointment = (props) => {
     props
       .cancelInterview(props.id)
       .then(() => transition(EMPTY))
-      .catch((error) => transition(ERROR_DELETE));
-  };
-
-  const handleCancel = () => {
-    transition(EMPTY);
+      .catch((error) => transition(ERROR_DELETE, true));
   };
 
   return (
@@ -59,8 +56,7 @@ const Appointment = (props) => {
         <Form
           interviewers={props.interviewers}
           onSave={save}
-          onCancel={handleCancel}
-          interview={props.bookInterview}
+          onCancel={back}
         />
       )}
 
@@ -98,8 +94,14 @@ const Appointment = (props) => {
       )}
 
       {mode === SAVING && <Status message={"Saving"} />}
-      {mode === ERROR_SAVE && <Status message={"Error while saving."} />}
-      {mode === ERROR_DELETE && <Status message={"Error while deleting."} />}
+
+      {mode === ERROR_SAVE && (
+        <Error onClose={back} message="Error while saving." />
+      )}
+
+      {mode === ERROR_DELETE && (
+        <Error onClose={back} message="Error while deleting." />
+      )}
     </article>
   );
 };
