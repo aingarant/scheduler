@@ -37,6 +37,7 @@ const Form = (props) => {
         <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
           <input
             className="appointment__create-input text--semi-bold"
+            data-testid="student-name-input"
             name="name"
             type="text"
             placeholder="Enter Student Name"
@@ -44,7 +45,7 @@ const Form = (props) => {
             onChange={(e) => {
               setStudent(e.target.value);
             }}
-            data-testid="student-name-input"
+            
           />
           <section className="appointment__validation">{error}</section>
 
