@@ -62,9 +62,9 @@ const useApplicationData = () => {
 
   useEffect(() => {
     Promise.all([
-      axios.get("http://localhost:8001/api/appointments"),
-      axios.get("http://localhost:8001/api/days"),
-      axios.get("http://localhost:8001/api/interviewers"),
+      axios.get("/api/appointments"),
+      axios.get("/api/days"),
+      axios.get("/api/interviewers"),
     ]).then((all) => {
       setState((prev) => ({
         ...prev,
