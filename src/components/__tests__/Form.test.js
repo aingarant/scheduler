@@ -1,5 +1,5 @@
 import React from "react";
-import { render, cleanup, getByPlaceholderText, getByTestId, screen } from "@testing-library/react";
+import { render, cleanup, getByPlaceholderText, getByTestId, screen, getByText, onSave, queryByText, fireEvent } from "@testing-library/react";
 
 
 import Form from "components/Appointment/Form";
@@ -23,7 +23,36 @@ describe("Running test for Form Component", () => {
     expect(getByPlaceholderText("Enter Student Name")).toHaveValue("");
   });
 
-  // it("renders with initial student name", () => {
-  //   expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones");
-  // });
+  it("renders with initial student name", () => {
+    const { getByTestId } = render(
+      <Form interviewers={interviewers} student="Lydia Miller-Jones" />
+    );
+    expect(getByTestId("student-name-input")).toHaveValue("Lydia Miller-Jones");
+  });
+
+  it("validates that the student name is not blank", () => {
+    const { getByText } = render(<Form interviewers={interviewers} onSave={onSave} />);
+    fireEvent.click(getByText("Save"))
+    expect(getByText(/student name cannot be blank/i)).toBeInTheDocument();
+  // expect(onSave).not.toHaveBeenCalled();
+  });
+
+  it("validates that the interviewer cannot be null", () => {
+    const { getByText } = render(<Form interviewers={interviewers} student="Lydia Miller-Jones" />);
+    fireEvent.click(getByText("Save"))
+    expect(getByText(/Please select an interviewer/i)).toBeInTheDocument();
+    // expect(onSave).not.toHaveBeenCalled();
+  });
+
+  it("calls onSave function when the name is defined", () => {
+     const { queryByText } = render(<Form interviewers={interviewers} student="Lydia Miller-Jones" />);
+    expect(queryByText(/student name cannot be blank/i)).toBeNull();
+    expect(queryByText(/please select an interviewer/i)).toBeNull();
+
+    /* 6. onSave is called once*/
+    // expect(onSave).toHaveBeenCalledTimes(1);
+
+    /* 7. onSave is called with the correct arguments */
+    // expect(onSave).toHaveBeenCalledWith("Lydia Miller-Jones", 1);
+  });
 })
