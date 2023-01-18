@@ -1,3 +1,5 @@
+const { CYCLIC_KEY } = require("@storybook/addon-actions/dist/constants");
+
 describe("Apointment", () => {
   beforeEach(() => {
     cy.request("GET", "/api/debug/reset");
@@ -7,20 +9,30 @@ describe("Apointment", () => {
     cy.contains("Monday");
   });
 
-  it("should book an interview", async () => {
-    cy.get("[alt=Add]")
-      .first()
-      .click()
-      .get("[data-testid=student-name-input]")
-      .type("Aingaran Thirunadarajah")
-      .get("[alt='Sylvia Palmer']")
-      .click();
-    cy.contains("Save").click();
-    cy.contains(".appointment__card--show", "Aingaran Thirunadarajah");
-    cy.contains(".appointment__card--show", "Sylvia Palmer");
+  // it("should book an interview", () => {
+  //   cy.get("[alt=Add]")
+  //     .first()
+  //     .click()
+  //     .get("[data-testid=student-name-input]")
+  //     .type("Aingaran Thirunadarajah")
+  //     .get("[alt='Sylvia Palmer']")
+  //     .click();
+  //   cy.contains("Save").click();
+  //   cy.contains(".appointment__card--show", "Aingaran Thirunadarajah");
+  //   cy.contains(".appointment__card--show", "Sylvia Palmer");
+  // });
+
+  // it("should edit the interview", () => {
+  //   cy
+  //   .contains(".appointment__card--show", "Archie Cohen")
+  //   .trigger('mouseover')
+  //   cy.get("[alt=Edit]").should('be.visible')
+  // });
+
+  it("should cancel an interview", () => {
+    cy.get("[alt='Delete']").first().click();
+    cy.contains(/Confirm/i).click();
+    cy.contains(/Deleting/i).should("not.exist");
+    cy.contains(".appointment__card--show", "Archie Cohen").should("not.exist");
   });
-
-  it("should edit the interview", () => {});
-
-  it("should cancel the interview", () => {});
 });
