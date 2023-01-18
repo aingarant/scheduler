@@ -16,30 +16,18 @@ describe("Navigation", () => {
   });
 
 
-  // it("should navigate to Tuesday", () => {
-  //   cy.get("li").contains("Tuesday").click();
-  // });
-
-  // it("should navigate to Tuesday", () => {
-  //   cy.contains("li", "Tuesday")
-  //   .click()
-  //   .should("have.css", "background-color", "rgb(242, 242, 242)");
-  // });
+  it("should navigate to Tuesday", () => {
+    cy.contains("li", "Tuesday")
+      .click()
+      .should("have.css", "background-color", "rgb(242, 242, 242)");
+  });
 
 
 
   it("should get the daylist selected item", () => {
     cy.contains("li", "Tuesday")
-    .click()
-    .should("contain", ".day-list__item--selected");
+      .click()
+    cy.get(".day-list__item--selected")
+      .should('be.selected')
   });
-
-  
-
-
-
-  it("should click on new appointment.", () => {
-    cy.get('.appointment__add-button')
-  });
-
 });
