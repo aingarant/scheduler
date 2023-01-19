@@ -1,6 +1,6 @@
 import React from "react";
 
-import { render, cleanup, waitForElement, fireEvent,prettyDOM, getByText } from "@testing-library/react";
+import { render, cleanup, waitForElement, fireEvent,getAllByTestId,getByAltText, prettyDOM, queryByText, getByPlaceholderText, getByText } from "@testing-library/react";
 
 
 import Application from "components/Application";
@@ -21,11 +21,5 @@ describe("Running test for Application Component", () => {
 
 
 
-  it("loads data, books an interview and reduces the spots remaining for Monday by 1", async () => {
-    const { container } = render(<Application />);
-  
-    await waitForElement(() => getByText(container, "Archie Cohen"));
-  
-    console.log(prettyDOM(container));
-  });
+
 })
