@@ -54,3 +54,7 @@ npm run storybook
 
 
 ## Screenshots
+
+!["Screenshot of Home Page on Desktop."](https://github.com/aingarant/scheduler/blob/master/docs/img/desktop_1.png)
+Home Page on Desktop.  
+
