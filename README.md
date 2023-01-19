@@ -1,15 +1,15 @@
 # Interview Scheduler
 
 
-- A scheduling web app using React. The backend NodeJS backend API was provided. 
-- The ReactJS frontend was developed to manage interviews
-- Axios used to access interview data from API (pos).
+- A responsive scheduling webapp using React JS. The backend Node JS REST API was developed by LHL. 
+- The ReactJS frontend was developed to manage interviews.
+- Axios used to request interview data from API.
 
 ### How To Use
 
 - Upon Loading the calendar, new appointments can be added in empty slots.
 - Existing appointments can be modified and cancelled (Edit/Delete buttons will appear on hover).
-- Form validation ensures student name and interviewer fields cannot be empty. (no back end validation)
+- Form validation ensures student name and interviewer fields cannot be empty. (no back-end validation)
 
 ### Setup
 
@@ -24,6 +24,15 @@ Technologies include:
 - Storybook
 - Jest
 - Cypress
+
+### Dependencies
+
+- "axios": "^0.20.0",
+- "classnames": "^2.2.6",
+- "normalize.css": "^8.0.1",
+- "react": "^16.9.0",
+- "react-dom": "^16.9.0",
+- "react-scripts": "3.4.4"
 
 ### Running Webpack Development Server
 
