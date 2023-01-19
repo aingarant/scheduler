@@ -19,7 +19,7 @@ import Application from "components/Application";
 afterEach(cleanup);
 
 describe("Running test for Application Component", () => {
-  it("changes the schedule when a new day is selected", async () => {
+  it("defaults to Monday and changes the schedule when a new day is selected", async () => {
     const { getByText } = render(<Application />);
     await waitForElement(() => getByText("Monday"));
     fireEvent.click(getByText("Tuesday"));
@@ -97,7 +97,7 @@ describe("Running test for Application Component", () => {
     );
   });
 
-  it("shows the delete error when failing to delete an appointment", async () => {
+  it("shows the delete error when failing to delete an existing appointment", async () => {
     axios.delete.mockRejectedValueOnce();
     const { container, debug } = render(<Application />);
     await waitForElement(() => getByText(container, "Archie Cohen"));
@@ -112,6 +112,5 @@ describe("Running test for Application Component", () => {
     await waitForElement(() =>
       fireEvent.click(getByAltText(appointment, "Close"))
     );
-    debug();
   });
 });
