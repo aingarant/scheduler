@@ -18,12 +18,14 @@ Install dependencies with `npm install`.
 Technologies include:
 
 - React JS
+- Webpack, Babel
 - Sass
 - Axios
 - Node JS, Express, Postgres (pre-developed by LHL).
 - Storybook
 - Jest
 - Cypress
+- Testing Library
 
 ### Dependencies
 
