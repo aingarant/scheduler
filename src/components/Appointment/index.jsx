@@ -53,11 +53,7 @@ const Appointment = (props) => {
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
 
       {mode === CREATE && (
-        <Form
-          interviewers={props.interviewers}
-          onSave={save}
-          onCancel={back}
-        />
+        <Form interviewers={props.interviewers} onSave={save} onCancel={back} />
       )}
 
       {mode === CONFIRM && (

@@ -1,4 +1,3 @@
-
 export const getAppointmentsForDay = (state, day) => {
   let output = []
   const dayArray = state.days.filter(item => item.name === day);
@@ -14,7 +13,6 @@ export const getAppointmentsForDay = (state, day) => {
 
 
 export const getInterview = (state, interview) => {
-
   let newProps = {};
   if (!interview) {
     return null;
@@ -25,14 +23,11 @@ export const getInterview = (state, interview) => {
   return newProps;
 }
 
-export const getInterviewersForDay = (state, day) =>
-{
-
+export const getInterviewersForDay = (state, day) => {
   const dayItem = state.days.find(item => item.name === day);
 
   if (!dayItem) {
     return []
   }
   return dayItem.interviewers.map(interviewerId => state.interviewers[interviewerId])
-
 }

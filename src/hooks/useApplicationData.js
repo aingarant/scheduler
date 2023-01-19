@@ -12,18 +12,15 @@ const useApplicationData = () => {
   const setDay = (day) => setState({ ...state, day });
 
   const updateSpots = (appointments) => {
+    const dayObj = state.days.find((item) => item.name === state.day);
 
-    // day object.
-    const dayObj = state.days.find(item => item.name === state.day);
-
-    // empty slots.
     const spots = dayObj.appointments.filter(
       (appt) => appointments[appt].interview === null
     ).length;
 
-    const day = {...dayObj, spots}
+    const day = { ...dayObj, spots };
 
-    return state.days.map(d => d.name === state.day ? day : d)
+    return state.days.map((d) => (d.name === state.day ? day : d));
   };
 
   const bookInterview = (id, interview) => {
