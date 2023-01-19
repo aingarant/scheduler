@@ -55,8 +55,11 @@ npm run storybook
 
 ## Screenshots
 
-!["Screenshot of Home Page on Desktop."](https://github.com/aingarant/scheduler/blob/master/docs/img/desktop_1.png)
+!["Screenshot of Home Page on Desktop."](https://github.com/aingarant/scheduler/blob/master/docs/img/desktop_0.png)
 Home Page on Desktop.  
+
+!["Screenshot of Selecting a Different day on Desktop."](https://github.com/aingarant/scheduler/blob/master/docs/img/desktop_1.png)
+Selecting a Different day on Desktop.  
 
 !["Screenshot of Home Page on Desktop."](https://github.com/aingarant/scheduler/blob/master/docs/img/desktop_2.png)
 Additng New or Editing Existing Interview Form
@@ -64,10 +67,10 @@ Additng New or Editing Existing Interview Form
 !["Screenshot of Home Page on Desktop."](https://github.com/aingarant/scheduler/blob/master/docs/img/desktop_3.png)
 Deleting an Interview confirmation.
 
-!["Screenshot of Home Page on Mobile."](https://github.com/aingarant/scheduler/blob/master/docs/img/mobile_1.png) \
+!["Screenshot of Home Page on Mobile."](https://github.com/aingarant/scheduler/blob/master/docs/img/mobile_1.png)
 
 Home Page on Mobile.
 
-!["Screenshot of Home Page on Mobile."](https://github.com/aingarant/scheduler/blob/master/docs/img/mobile_2.png) \
+!["Screenshot of Home Page on Mobile."](https://github.com/aingarant/scheduler/blob/master/docs/img/mobile_2.png)
 
 Additng New or Editing Existing Interview Form on Mobile
