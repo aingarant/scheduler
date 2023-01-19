@@ -1,3 +1,4 @@
+// Setting initial state for the app.
 export const INITIAL_STATE = {
   day: "Monday",
   days: [],
@@ -5,6 +6,7 @@ export const INITIAL_STATE = {
   interviewers: {},
 }
 
+// Defining useReducer function (appReducer) and its corresponding actions.
 export const appReducer = (state, action) => {
   switch (action.type) {
     case "SET_DAY":
