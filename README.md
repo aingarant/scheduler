@@ -65,7 +65,7 @@ Additng New or Editing Existing Interview Form
 Deleting an Interview confirmation.
 
 !["Screenshot of Home Page on Mobile."](https://github.com/aingarant/scheduler/blob/master/docs/img/mobile_1.png)
-
+Home Page on Mobile.
+  
 !["Screenshot of Home Page on Mobile."](https://github.com/aingarant/scheduler/blob/master/docs/img/mobile_2.png)
-
-!["Screenshot of Home Page on Mobile."](https://github.com/aingarant/scheduler/blob/master/docs/img/mobile_3.png)
+Additng New or Editing Existing Interview Form on Mobile
