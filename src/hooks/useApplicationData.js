@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
+import { useEffect, useReducer } from "react";
 import axios from "axios";
+import { INITIAL_STATE, appReducer } from "reducers";
+
 
 const useApplicationData = () => {
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: {},
-    interviewers: {},
-  });
 
-  const setDay = (day) => setState({ ...state, day });
+  const [state, dispatch] = useReducer(appReducer, INITIAL_STATE);
+
+  const setDay = day => dispatch({ type: "SET_DAY", payload: { day: day } });
+
+  console.log(state.day);
 
   const updateSpots = (appointments) => {
     const dayObj = state.days.find((item) => item.name === state.day);
@@ -36,7 +36,7 @@ const useApplicationData = () => {
       .put(`/api/appointments/${id}`, { interview })
       .then((response) => {
         const days = updateSpots(appointments);
-        setState({ ...state, appointments, days });
+        dispatch({ type: "SET_APPOINTMENT", payload: { appointments, days } })
       });
   };
 
@@ -53,7 +53,7 @@ const useApplicationData = () => {
 
     return axios.delete(`/api/appointments/${id}`).then((response) => {
       const days = updateSpots(appointments);
-      setState({ ...state, appointments, days });
+      dispatch({ type: "SET_APPOINTMENT", payload: { appointments, days } })
     });
   };
 
@@ -63,12 +63,9 @@ const useApplicationData = () => {
       axios.get("/api/days"),
       axios.get("/api/interviewers"),
     ]).then((all) => {
-      setState((prev) => ({
-        ...prev,
-        appointments: all[0].data,
-        days: all[1].data,
-        interviewers: all[2].data,
-      }));
+
+      const [{ data: appointments }, { data: days }, { data: interviewers }] = all;
+      dispatch({ type: "SET_APP_DATA", payload: { days, appointments, interviewers } });
     });
   }, []);
 
