@@ -3,7 +3,7 @@
 
 - A scheduling web app using React. The backend NodeJS backend API was provided. 
 - The ReactJS frontend was developed to manage interviews
-- Axios used to consume API data.
+- Axios used to access interview data from API (pos).
 
 ### How To Use
 
@@ -17,9 +17,13 @@ Install dependencies with `npm install`.
 
 Technologies include:
 
-- react
-- axios
-
+- React JS
+- Sass
+- Axios
+- Node JS, Express, Postgres (pre-developed by LHL).
+- Storybook
+- Jest
+- Cypress
 
 ### Running Webpack Development Server
 
