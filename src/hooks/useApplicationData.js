@@ -4,22 +4,14 @@ import { INITIAL_STATE, appReducer } from "reducers";
 
 
 const useApplicationData = () => {
-
   const [state, dispatch] = useReducer(appReducer, INITIAL_STATE);
-
   const setDay = day => dispatch({ type: "SET_DAY", payload: { day: day } });
-
-  console.log(state.day);
-
   const updateSpots = (appointments) => {
     const dayObj = state.days.find((item) => item.name === state.day);
-
     const spots = dayObj.appointments.filter(
       (appt) => appointments[appt].interview === null
     ).length;
-
     const day = { ...dayObj, spots };
-
     return state.days.map((d) => (d.name === state.day ? day : d));
   };
 
@@ -71,5 +63,4 @@ const useApplicationData = () => {
 
   return { state, setDay, bookInterview, cancelInterview, updateSpots };
 };
-
 export default useApplicationData;
